@@ -1,0 +1,48 @@
+﻿<Page x:Class="KP_OOP.ChoosingRoom"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KP_OOP"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      Title="ChoosingRoom" Background="#d598fa">
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}" 
+                                Width="100" Height ="30" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#829dff"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="10" Color="#c66bff" Direction="320" ShadowDepth="30" Opacity="0.5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Label Name="warning" FontSize="18" FontWeight="Bold" Margin="30 80 30 30" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="Auto">Выберите комнату</Label>
+            <ListView Width="400" Height="300" FontSize="16" Margin="20 10 10 10" Background="#e4b8ff" x:Name="ListOfFiles" ItemsSource="{Binding Files, UpdateSourceTrigger=PropertyChanged}">
+            </ListView>
+            <TextBox Name="textbox_newroom_name" Width="150" Height="30" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 120 0 0" Visibility="Hidden"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="300" Margin="20">
+            <Button x:Name="DeleteRoom" Style="{StaticResource ButtonStyle}" Background="#b5d8ff" Margin="10 0 0 10" VerticalAlignment="Bottom" Click="ButtonDeleteRoomClick">Удалить</Button>
+            <Button x:Name="ChooseRoom" Style="{StaticResource ButtonStyle}" Background="#b5d8ff" Margin="10 0 0 10" VerticalAlignment="Bottom" Click="ButtonChooseRoomClick">Открыть</Button>
+            <Button x:Name="CreateRoom" Style="{StaticResource ButtonStyle}" Background="#b5d8ff" Margin="10 0 0 10" VerticalAlignment="Bottom" Click="ButtonCreateRoomClick">Создать</Button>
+        </StackPanel>
+    </Grid>
+</Page>
